@@ -13,9 +13,8 @@ public class History {
     @Column(name = "status")
     private long status;
 
-    @OneToMany
-    @JoinColumn(name = "product_id")
-    private Collection<Product> product;
+    @OneToMany(mappedBy = "history")
+    private Collection<Product> products;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,12 +36,12 @@ public class History {
         this.status = status;
     }
 
-    public Collection<Product> getProduct() {
-        return product;
+    public Collection<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Collection<Product> product) {
-        this.product = product;
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
     }
 
     public User getUser() {
