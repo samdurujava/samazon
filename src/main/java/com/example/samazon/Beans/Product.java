@@ -43,6 +43,9 @@ public class Product {
         this.image = image;
     }
 
+    public Product() {
+    }
+
     public void setId(long id) {
         this.id = id;
     }
