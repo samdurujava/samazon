@@ -20,6 +20,17 @@ public class Product {
     @Column(name = "taxable")
     private boolean taxable;
 
+    @Column(name = "image")
+    private String image;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "history_id")
+    private History history;
+
     public long getId() {
         return id;
     }
