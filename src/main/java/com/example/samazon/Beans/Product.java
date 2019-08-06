@@ -16,7 +16,7 @@ public class Product {
     private String description;
 
     @Column(name = "price")
-    private long price;
+    private double price;
 
     @Column(name = "taxable")
     private boolean taxable;
@@ -34,6 +34,14 @@ public class Product {
 
     public long getId() {
         return id;
+    }
+
+    public Product(String name, String description, double price, boolean taxable, String image){
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.taxable = taxable;
+        this.image = image;
     }
 
     public void setId(long id) {
@@ -56,11 +64,11 @@ public class Product {
         this.description = description;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
