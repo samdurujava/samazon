@@ -1,5 +1,6 @@
 package com.example.samazon.Beans;
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name="Product_Data")
@@ -23,11 +24,11 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Collection<Order> order;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "history_id")
     private History history;
 
@@ -69,5 +70,29 @@ public class Product {
 
     public void setTaxable(boolean taxable) {
         this.taxable = taxable;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Collection<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(Collection<Order> order) {
+        this.order = order;
+    }
+
+    public History getHistory() {
+        return history;
+    }
+
+    public void setHistory(History history) {
+        this.history = history;
     }
 }

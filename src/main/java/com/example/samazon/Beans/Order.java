@@ -1,7 +1,7 @@
 package com.example.samazon.Beans;
-import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -23,13 +23,13 @@ public class Order {
     @Column(name = "shipping")
     private long shipping;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Collection<Product> product;
 
     public long getId() {
         return id;
@@ -79,11 +79,11 @@ public class Order {
         this.user = user;
     }
 
-    public Product getProduct() {
+    public Collection<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Collection<Product> product) {
         this.product = product;
     }
 }

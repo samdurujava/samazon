@@ -1,7 +1,7 @@
 package com.example.samazon.Beans;
-import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name="History_Data")
@@ -13,11 +13,11 @@ public class History {
     @Column(name = "status")
     private long status;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "product_id")
-    private Product product;
+    private Collection<Product> product;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -37,11 +37,11 @@ public class History {
         this.status = status;
     }
 
-    public Product getProduct() {
+    public Collection<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Collection<Product> product) {
         this.product = product;
     }
 

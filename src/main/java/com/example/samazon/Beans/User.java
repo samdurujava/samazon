@@ -25,6 +25,7 @@ public class User {
     private String address;
 
     @OneToMany
+    @JoinColumn(name = "history_id")
     private Collection<History> history;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -33,6 +34,7 @@ public class User {
     private Collection<Role> roles;
 
     @OneToMany
+    @JoinColumn(name = "order_id")
     private Collection<Order> orders;
 
     public User(String firstName, String lastName, String email, String username, String password, String address) {
