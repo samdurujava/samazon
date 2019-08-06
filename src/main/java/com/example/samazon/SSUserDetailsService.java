@@ -1,5 +1,8 @@
 package com.example.samazon;
 
+import com.example.samazon.Beans.Role;
+import com.example.samazon.Beans.User;
+import com.example.samazon.Repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

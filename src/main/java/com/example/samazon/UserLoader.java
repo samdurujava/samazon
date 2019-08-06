@@ -1,5 +1,9 @@
 package com.example.samazon;
 
+import com.example.samazon.Beans.Role;
+import com.example.samazon.Beans.User;
+import com.example.samazon.Repositories.RoleRepository;
+import com.example.samazon.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

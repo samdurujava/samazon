@@ -1,5 +1,6 @@
 package com.example.samazon;
 
+import com.example.samazon.Beans.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;

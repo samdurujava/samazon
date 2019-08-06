@@ -1,7 +1,8 @@
-package com.example.samazon;
+package com.example.samazon.Beans;
+
+import com.example.samazon.Beans.Role;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity

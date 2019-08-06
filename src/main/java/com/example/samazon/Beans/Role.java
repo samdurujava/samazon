@@ -1,4 +1,4 @@
-package com.example.samazon;
+package com.example.samazon.Beans;
 
 import javax.persistence.*;
 import java.util.Collection;
