@@ -1,11 +1,13 @@
 package com.example.samazon.Beans;
 
 import com.example.samazon.Beans.Role;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name="User_Data")
 public class User {
 
     @Id
@@ -42,7 +44,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.username = username;
-        this.password = password;
+        setPassword(password);
         this.address = address;
     }
 
@@ -94,7 +96,8 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
     }
 
     public String getAddress() {
