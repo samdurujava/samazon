@@ -26,8 +26,7 @@ public class User {
 
     private String address;
 
-    @OneToMany
-    @JoinColumn(name = "history_id")
+    @OneToMany(mappedBy = "user")
     private Collection<History> history;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -35,8 +34,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
-    @OneToMany
-    @JoinColumn(name = "order_id")
+    @OneToMany(mappedBy = "user")
     private Collection<Order> orders;
 
     public User(String firstName, String lastName, String email, String username, String password, String address) {

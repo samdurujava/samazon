@@ -27,9 +27,10 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    private Collection<Product> product;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private Collection<Product> products;
 
     public long getId() {
         return id;
@@ -79,11 +80,11 @@ public class Order {
         this.user = user;
     }
 
-    public Collection<Product> getProduct() {
-        return product;
+    public Collection<Product> getProducts() {
+        return products;
     }
 
-    public void setProduct(Collection<Product> product) {
-        this.product = product;
+    public void setProducts(Collection<Product> products) {
+        this.products = products;
     }
 }

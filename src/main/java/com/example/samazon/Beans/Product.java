@@ -24,9 +24,8 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany
-    @JoinColumn(name = "order_id")
-    private Collection<Order> order;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    private Collection<Order> orders;
 
     @ManyToOne
     @JoinColumn(name = "history_id")
@@ -88,12 +87,12 @@ public class Product {
         this.image = image;
     }
 
-    public Collection<Order> getOrder() {
-        return order;
+    public Collection<Order> getOrders() {
+        return orders;
     }
 
-    public void setOrder(Collection<Order> order) {
-        this.order = order;
+    public void setOrders(Collection<Order> orders) {
+        this.orders = orders;
     }
 
     public History getHistory() {
