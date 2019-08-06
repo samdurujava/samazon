@@ -1,5 +1,7 @@
 package com.example.samazon.Controller;
 
+import com.example.samazon.Beans.History;
+import com.example.samazon.Beans.Product;
 import com.example.samazon.Beans.User;
 import com.example.samazon.CustomUserDetails;
 import com.example.samazon.Repositories.*;
@@ -9,12 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 @Controller
 public class JosephController {
@@ -58,6 +63,36 @@ public class JosephController {
         model.addAttribute("list", productRepository.findAll());
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
+        return "show";
+    }
+
+    @RequestMapping("/addCart/{id}")
+    public String add(@PathVariable("id") long id, Principal principal, Model model) {
+        model.addAttribute("list", productRepository.findAll());
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        History history = historyRepository.findByUser(user);
+        Collection<Product> products;
+        if (history == null) {
+            history = new History();
+            products = new ArrayList<>();
+        } else {
+            products = history.getProducts();
+        }
+        history.setUser(user);
+
+        Product product = productRepository.findById(id);
+        products.add(product);
+        history.setProducts(products);
+        historyRepository.save(history);
+        return "show";
+    }
+
+    @RequestMapping("/cart")
+    public String myCart( Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("list", historyRepository.findByUser(user).getProducts());
         return "show";
     }
 }
