@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Order Confirmation</title>
@@ -143,9 +143,9 @@
                                     <!--Cost Breakdown Right-->
                                     <table>
                                         <tbody>
-                                        <tr> <td class="price"> <span th:text="@{order.tax}"/></td> </tr>
-                                        <tr> <td class="price"> <span th:text="@{order.shipping}"/></td> </tr>
-                                        <tr> <td class="price"> <b><span th:text="@{order.total}"/></b> </td> </tr>
+                                        <tr> <td class="price"> <span th:text="${order.tax}"/></td> </tr>
+                                        <tr> <td class="price"> <span th:text="${order.shipping}"/></td> </tr>
+                                        <tr> <td class="price"> <b><span th:text="${order.total}"/></b> </td> </tr>
                                         </tbody>
                                     </table>
                                 </td>
