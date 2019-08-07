@@ -23,6 +23,9 @@ public class Order {
     @Column(name = "shipping")
     private long shipping;
 
+    @Column(name = "shipping_method")
+    private String shipping_method;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -86,5 +89,13 @@ public class Order {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public String getShipping_method() {
+        return shipping_method;
+    }
+
+    public void setShipping_method(String shipping_method) {
+        this.shipping_method = shipping_method;
     }
 }
