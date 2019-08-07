@@ -44,134 +44,138 @@
 </head>
 
 <body>
-<table id="main">
-    <tbody>
-    <tr>
+<div th:replace="base::nav"></div>
+<div class="container">
+    <table id="main">
+        <tbody>
+        <tr>
 
 
-        <td id="header">
-            <table cellspacing="0" cellpadding="0">
-                <tbody>
-                <tr>
-                    <!--               Samazon Logo -->
-                    <td width="250" id="logo"> <a href="/homepage" title="Visit Samazon.com"><img id="samazonLogo" alt="Samazon" src="https://designcrafts.online/wp-content/uploads/2018/02/29-S.png"
-                                                                                                  height="100" width="150"></a> </td>
+            <td id="header">
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <!--               Samazon Logo -->
+                        <td width="250" id="logo"> <a href="/homepage" title="Visit Samazon.com"><img id="samazonLogo" alt="Samazon" src="https://designcrafts.online/wp-content/uploads/2018/02/29-S.png"
+                                                                                                      height="100" width="150"></a> </td>
 
 
-                    <td width="250" id="title" valign="top" align="right" padding-left="10">
-                        <p class="header"> Order Confirmation</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table> </td>
-    </tr>
+                        <td width="250" id="title" valign="top" align="right" padding-left="10">
+                            <b><p class="header"> Order Confirmation</p></b>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table> </td>
+        </tr>
 
 
-    <!--          GREETING -->
-    <tr>
-        <td id="greetingSummary"> <p> </p>
-            <div class="greeting">
-                Hello <span th:text="${user.firstName} + ' ' + ${user.lastName}"/>,
-            </div><br><p class="text"> Thank you for shopping with us.  We’ll send a confirmation when your item ships. </p> </td>
-    </tr>
+        <!--          GREETING -->
+        <tr>
+            <td id="greetingSummary"> <p> </p>
+                <div class="greeting">
+                    Hello <span th:text="${user.firstName} + ' ' + ${user.lastName}"/>,
+                </div><br><p class="text"> Thank you for shopping with us.  We’ll send a confirmation when your item ships. </p> </td>
+        </tr>
 
-    <!--          DETAIL AND ORDER -->
-    <tr>
-        <td style="padding:10px 0 0 0;">
-            <p class="text"> Details:</p>
-            <p class="title"> Order
-                <a href="/shipping" th:text="${order.id}"></a>
-            </p> </td>
-    </tr>
-
-
-    <tr>
-        <td>
-            <table style="width:100%;" id="criticalInfo">
-                <tbody>
+        <!--          DETAIL AND ORDER -->
+        <tr>
+            <td style="padding:10px 0 0 0;">
+                <b><p class="text"> Details:</p></b>
+                <p class="title"> Order
+                    <a href="/shipping" th:text="${order.id}"></a>
+                </p> </td>
+        </tr>
 
 
-                <tr>
-                    <!--          DATE AND BUTTON TRAY -->
-                    <td style="padding: 11px 40px 20px 18px;">
-                        <p class= "title">
-                            <span class="title">Arriving:</span>
+        <tr>
+            <td>
+                <table style="width:100%;" id="criticalInfo">
+                    <tbody>
+
+
+                    <tr>
+                        <!--          DATE AND BUTTON TRAY -->
+                        <td style="padding: 11px 40px 20px 18px;">
+                            <p class= "title">
+                                <span class="title">Arriving:</span>
+                                <br>
+                                <b style="color:#009900;">Thursday, August 8 </b>
+                            </p>
                             <br>
-                            <b style="color:#009900;">Thursday, August 8 </b>
-                        </p>
-                        <br>
-                        <!--                Orders Button -->
-                        <a href="/" class="btn btn-primary">
-                            Finalize your Order
-                        </a>
-                    </td>
+                            <!--                Orders Button -->
+                            <a href="/finalize" class="btn btn-primary">
+                                Finalize your Order
+                            </a>
+                        </td>
 
 
-                    <!--                  ADDRESS AND PRICE TRAY -->
-                    <td style="padding:11px 0px 20px 18px; ">
-                        <p class="title">
+                        <!--                  ADDRESS AND PRICE TRAY -->
+                        <td style="padding:11px 0px 20px 18px; ">
+                            <p class="title">
 					<span>Ship to:
 					<br>
                         <b> <span th:text="${user.address}"></span></b>
 					</span>
-                            <br>
-                        </p>
+                                <br>
+                            </p>
 
-                        <!--Cost Breakdown-->
-                        <table id="costBreakdown">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <!--Cost Breakdown Left-->
-                                    <table>
-                                        <tbody>
-                                        <tr> <td class="text"> Estimated Tax: </td> </tr>
-                                        <tr> <td class="text"> Shipping: </td> </tr>
-                                        <tr> <td class="text"> <b>Order Total:</b> </td> </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
+                            <!--Cost Breakdown-->
+                            <table id="costBreakdown">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <!--Cost Breakdown Left-->
+                                        <table>
+                                            <tbody>
+                                            <tr> <td class="text"> Estimated Tax: </td> </tr>
+                                            <tr> <td class="text"> Shipping: </td> </tr>
+                                            <tr> <td class="text"> <b>Order Total:</b> </td> </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
 
-                                <td>
-                                    <!--Cost Breakdown Right-->
-                                    <table>
-                                        <tbody>
-                                        <tr> <td class="price"> <span th:text="${order.tax}"/></td> </tr>
-                                        <tr> <td class="price"> <span th:text="${order.shipping}"/></td> </tr>
-                                        <tr> <td class="price"> <b><span th:text="${order.total}"/></b> </td> </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-
-
-                </tr>
-
-                </tbody>
-            </table>
-            <table>
-                <tbody id="footer">
-                <tr>
-                    <td id="closing"> <span>We hope to see you again soon.</span> </td>
-                    <br><br>
-                    <span class="signature"><a href="/homepage">Samazon.com</a></span> </td>
-                </tr>
-
-                <tr>
-                    <td id="legalCopy"> <p> The payment for your invoice is processed by Samazon Payments, Inc. P.O. Box 81226 Seattle, Washington 98108-1226. If you need more information, please contact (866) 216-1075 </p> <p> By placing your order, you agree to <a href="/homepage">Samazon.com</a>’s <a href="/homepage">Privacy Notice</a> and <a href="/homepage"> Conditions of Use</a>. Unless otherwise noted, items sold by <a href="/homepage">Samazon.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state. If your order contains one or more items from a seller other than <a href="/homepage">Samazon.com</a>, it may be subject to state and local sales tax, depending upon the seller's business policies and the location of their operations. Learn more about <a href="/homepage">tax and seller information</a>.</p> <p></p> <p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p> </td>
-                </tr>
-                </tr>
-                </tbody>
-            </table>
+                                    <td>
+                                        <!--Cost Breakdown Right-->
+                                        <table>
+                                            <tbody>
+                                            <tr> <td class="price"> <span th:text="${order.tax}"/></td> </tr>
+                                            <tr> <td class="price"> <span th:text="${order.shipping}"/></td> </tr>
+                                            <tr> <td class="price"> <b><span th:text="${order.total}"/></b> </td> </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
 
 
+                    </tr>
 
-</table>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+                    </tbody>
+                </table>
+                <table>
+                    <tbody id="footer">
+                    <tr>
+                        <td id="closing"> <span>We hope to see you again soon.</span> </td>
+                        <br><br>
+                        <span class="signature"><a href="/homepage">Samazon.com</a></span> </td>
+                    </tr>
+
+                    <tr>
+                        <td id="legalCopy"> <p> The payment for your invoice is processed by Samazon Payments, Inc. P.O. Box 81226 Seattle, Washington 98108-1226. If you need more information, please contact (866) 216-1075 </p> <p> By placing your order, you agree to <a href="/homepage">Samazon.com</a>’s <a href="/homepage">Privacy Notice</a> and <a href="/homepage"> Conditions of Use</a>. Unless otherwise noted, items sold by <a href="/homepage">Samazon.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state. If your order contains one or more items from a seller other than <a href="/homepage">Samazon.com</a>, it may be subject to state and local sales tax, depending upon the seller's business policies and the location of their operations. Learn more about <a href="/homepage">tax and seller information</a>.</p> <p></p> <p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p> </td>
+                    </tr>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+    </table>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</div>
+<div th:replace="base::footer"></div>
 </body>
 </html>
