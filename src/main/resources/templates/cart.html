@@ -24,16 +24,14 @@
             <td th:text="'$' + ${product.price}"></td>
             <td th:text="${product.description}"></td>
             <td>
-                <a class="btn btn-primary" th:href="@{/view/{id}(id=${product.id})}">
-                    View
-                </a>
-                <a class="btn btn-primary" th:href="@{/addCart/{id}(id=${product.id})}">
-                    Add to Cart
+                <a class="btn btn-danger" th:href="@{/delete/{id}(id=${product.id})}">
+                    Delete
                 </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <h4 th:text="'Subtotal: $' + ${total}"></h4>
 </div>
 <div th:replace="base :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
