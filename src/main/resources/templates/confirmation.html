@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+
+</head>
+<body>
+
+<html>
+<head>
+    <style>
+        .price {
+            font-family: sans-serif;
+
+        }
+        .text {
+            font-family: sans-serif;
+            font-size: 14px;
+        }
+        .greeting {
+            font-family: sans-serif;
+        }
+        .header{
+            font-family: sans-serif;
+            font-size: 18px;
+        }
+        .title{
+            font-family: sans-serif;
+        }
+        #legalCopy{
+            font-family: sans-serif;
+            font-size: 12px;
+
+
+        }
+        .signature{
+            font-family: sans-serif;
+        }
+        #closing{
+            font-family:sans-serif;
+        }
+        #footer{
+            max-width:580px;
+            margin:0 auto;;
+        }
+    </style>
+</head>
+
+<body>
+<table id="main">
+    <tbody>
+    <tr>
+
+
+        <td id="header">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <!--               Samazon Logo -->
+                    <td width="250" id="logo"> <a href="/homepage" title="Visit Samazon.com"><img id="samazonLogo" alt="Samazon" src="https://designcrafts.online/wp-content/uploads/2018/02/29-S.png"
+                                                                                                  height="100" width="150"></a> </td>
+
+
+                    <td width="250" id="title" valign="top" align="right" padding-left="10">
+                        <p class="header"> Order Confirmation</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table> </td>
+    </tr>
+
+
+    <!--          GREETING -->
+    <tr>
+        <td id="greetingSummary"> <p> </p>
+            <div class="greeting">
+                Hello INSERT NAME,
+            </div><br><p class="text"> Thank you for shopping with us.  We’ll send a confirmation when your item ships. </p> </td>
+    </tr>
+
+    <!--          DETAIL AND ORDER -->
+    <tr>
+        <td style="padding:10px 0 0 0;">
+            <p class="text"> Details:</p>
+            <p class="title"> Order
+                <a href="/shipping">#113-3159287-4757810</a>
+            </p> </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            <table style="width:100%;" id="criticalInfo">
+                <tbody>
+
+
+                <tr>
+                    <!--          DATE AND BUTTON TRAY -->
+                    <td style="padding: 11px 40px 20px 18px;">
+                        <p class= "title">
+                            <span class="title">Arriving:</span>
+                            <br>
+                            <b style="color:#009900;">Thursday, August 8 </b>
+                        </p>
+                        <br>
+                        <!--                Orders Button -->
+                        <a href="/cart">
+                            <img alt="Your Orders"
+                                 border="0"
+                                 id="yourOrders"
+                                 src="http://g-ecx.images-amazon.com/images/G/01/e-mail/img14/buttons/cta_manage.png">
+                        </a>
+                    </td>
+
+
+                    <!--                  ADDRESS AND PRICE TRAY -->
+                    <td style="padding:11px 0px 20px 18px; ">
+                        <p class="title">
+					<span>Ship to:
+					<br>
+					<b> 12 South Summit Avenue  </b>
+					</span>
+                            <br>
+                        </p>
+
+                        <!--Cost Breakdown-->
+                        <table id="costBreakdown">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <!--Cost Breakdown Left-->
+                                    <table>
+                                        <tbody>
+                                        <tr> <td class="text"> Total Before Tax: </td> </tr>
+                                        <tr> <td class="text"> Estimated Tax: </td> </tr>
+                                        <tr> <td class="text"> Shipping: </td> </tr>
+                                        <tr> <td class="text"> <b>Order Total:</b> </td> </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+
+                                <td>
+                                    <!--Cost Breakdown Right-->
+                                    <table>
+                                        <tbody>
+                                        <tr> <td class="price"> $44.97 </td> </tr>
+                                        <tr> <td class="price"> $0.00 </td> </tr>
+                                        <tr> <td class="price"> $5.00 </td> </tr>
+                                        <tr> <td class="price"> <b>$49.97</b> </td> </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+
+
+                </tr>
+
+                </tbody>
+            </table>
+            <table>
+                <tbody id="footer">
+                <tr>
+                    <td id="closing"> <span> We hope to see you again soon.</span> </td>
+                    <br><br>
+                    <span class="signature"><a href="/homepage">Samazon.com</a></span> </td>
+                </tr>
+
+                <tr>
+                    <td id="legalCopy"> <p> The payment for your invoice is processed by Samazon Payments, Inc. P.O. Box 81226 Seattle, Washington 98108-1226. If you need more information, please contact (866) 216-1075 </p> <p> By placing your order, you agree to <a href="/homepage">Samazon.com</a>’s <a href="/homepage">Privacy Notice</a> and <a href="/homepage"> Conditions of Use</a>. Unless otherwise noted, items sold by <a href="/homepage">Samazon.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state. If your order contains one or more items from a seller other than <a href="/homepage">Samazon.com</a>, it may be subject to state and local sales tax, depending upon the seller's business policies and the location of their operations. Learn more about <a href="/homepage">tax and seller information</a>.</p> <p></p> <p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p> </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+</table>
+</body>
+</html>
+
+</body>
+</html>
