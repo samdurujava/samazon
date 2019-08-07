@@ -58,7 +58,7 @@ public class JosephController {
         return "login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/list")
     public String homePage(Principal principal, Model model) {
         model.addAttribute("list", productRepository.findAll());
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
@@ -81,20 +81,41 @@ public class JosephController {
         return "show";
     }
 
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id, Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+
+        ArrayList<History> historyList = historyRepository.findAllByProductId(id);
+        if (historyList.size() > 0) {
+            historyRepository.deleteById(historyList.get(0).getId());
+        }
+        historyList = historyRepository.findAllByUser(user);
+        return addToCart(model, historyList);
+    }
+
     @RequestMapping("/cart")
     public String myCart( Principal principal, Model model) {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
         ArrayList<History> historyList = historyRepository.findAllByUser(user);
+        return addToCart(model, historyList);
+    }
+
+    private String addToCart(Model model, ArrayList<History> historyList) {
+        double total = 0;
         if (historyList.size() > 0) {
             ArrayList<Product> products = new ArrayList<>();
             for (History prev : historyList) {
                 products.add(productRepository.findById(prev.getProductId()));
+                total += productRepository.findById(prev.getProductId()).getPrice();
             }
             model.addAttribute("list", products);
         } else {
             model.addAttribute("list", null);
         }
-        return "show";
+        total = ((int) (total * 100)) / 100.0;
+        model.addAttribute("total", total);
+        return "cart";
     }
 }

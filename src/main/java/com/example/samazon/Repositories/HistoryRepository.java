@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public interface HistoryRepository extends CrudRepository<History, Long> {
     ArrayList<History> findAllByUser(User user);
-    History findByProductId(Long id);
+    ArrayList<History> findAllByProductId(Long id);
 }
