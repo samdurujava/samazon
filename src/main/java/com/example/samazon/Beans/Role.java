@@ -2,7 +2,7 @@ package com.example.samazon.Beans;
 
 import javax.persistence.*;
 import java.util.Collection;
- 
+
 @Entity
 @Table(name="Role_Data")
 public class Role {
