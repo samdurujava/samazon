@@ -42,8 +42,8 @@
 <div th:replace="base::nav"></div>
 
 <div class="container">
-    <form th:action="@{/shipping}" method="post" id="result">
-        <h1>Shipping Preference:</h1>
+    <form onsubmit="return displayRadioValue()" method="post" th:action="@{/shipping}">
+        <h1>Shipping and Payment Preference:</h1>
         <hr>
         <div class="row container">
             <h5>Shipping Address:</h5></br>
@@ -98,7 +98,23 @@
                 </label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" value="Submit" style="float: right;" onclick="displayRadioValue()" >Confirm Choices</button>
+
+        <div class="row container">
+            <h5>Payment Method:</h5></br>
+            <div class="card m-2" style="width: 17rem;"  th:each="user : ${users}">
+                <label>
+                    <input type="radio" name="ship_payment" class="card-input-element" />
+                    <div class="panel panel-default card-input">
+                        <div class="card-header bg-info text-white">Name: <td th:text = "${user.firstName}"/> <td th:text = "${user.lastName}"/></div></br>
+                        <div class="card-body">
+                            <div class="panel-heading">Payment: <td th:text = "${user.creditCard}"></div></br>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" value="Submit" style="float: right;">Confirm Choices</button>
+        <input type = "hidden" th:text="result" name="result" id="result"/>
     </form>
 </div>
 
@@ -112,7 +128,7 @@
         for(i = 0; i < x.length; i++) {
             if(x[i].checked)
                 document.getElementById("result").innerHTML
-                    = "Result: "+x[i].value;
+                    =x[i].value;
         }
     }
 </script>
