@@ -42,7 +42,7 @@
 <div th:replace="base::nav"></div>
 
 <div class="container">
-    <form action="/test" method="get" id="form1">
+    <form th:action="@{/shipping}" method="post" id="result">
         <h1>Shipping Preference:</h1>
         <hr>
         <div class="row container">
@@ -64,7 +64,7 @@
             <h5>Shipping Method:</h5></br>
             <div class="card m-2" style="width: 17rem;">
                 <label>
-                    <input type="radio" name="ship_method" class="card-input-element" />
+                    <input type="radio" name="ship_method" class="card-input-element" id="1" value="ship1"/>
                     <div class="panel panel-default card-input">
                         <div class="card-header bg-info text-white">One-Day Shipping</div></br>
                         <div class="card-body">
@@ -76,7 +76,7 @@
 
             <div class="card m-2" style="width: 17rem;">
                 <label>
-                    <input type="radio" name="ship_method" class="card-input-element" />
+                    <input type="radio" name="ship_method" class="card-input-element" id="2" value="ship2"/>
                     <div class="panel panel-default card-input">
                         <div class="card-header bg-info text-white">Two-Day Shipping</div></br>
                         <div class="card-body">
@@ -88,7 +88,7 @@
 
             <div class="card m-2" style="width: 17rem;">
                 <label>
-                    <input type="radio" name="ship_method" class="card-input-element" />
+                    <input type="radio" name="ship_method" class="card-input-element" id="3" value="ship3"/>
                     <div class="panel panel-default card-input">
                         <div class="card-header bg-info text-white">Standard Shipping</div></br>
                         <div class="card-body">
@@ -98,11 +98,24 @@
                 </label>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary" form="form1" value="Submit" style="float: right;">Submit</button>
+        <button type="submit" class="btn btn-primary" value="Submit" style="float: right;" onclick="displayRadioValue()" >Confirm Choices</button>
     </form>
 </div>
 
 </div>
 <div th:replace="base::footer"></div>
+
+<script>
+    function displayRadioValue() {
+        var x = document.getElementsByName('ship_method');
+
+        for(i = 0; i < x.length; i++) {
+            if(x[i].checked)
+                document.getElementById("result").innerHTML
+                    = "Result: "+x[i].value;
+        }
+    }
+</script>
+
 </body>
 </html>
