@@ -26,6 +26,8 @@ public class User {
 
     private String address;
 
+    private String creditCard;
+
     @OneToMany(mappedBy = "user")
     private Collection<History> history;
 
@@ -37,13 +39,15 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<Order> orders;
 
-    public User(String firstName, String lastName, String email, String username, String password, String address) {
+    public User(String firstName, String lastName, String email, String username, String password, String address,
+            String creditCard) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
         setPassword(password);
         this.address = address;
+        this.creditCard = creditCard;
     }
 
     public User() {
@@ -128,5 +132,13 @@ public class User {
 
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
+    }
+
+    public String getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 }

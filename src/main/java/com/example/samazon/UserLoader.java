@@ -28,12 +28,14 @@ public class UserLoader implements CommandLineRunner {
         Role adminRole = roleRepository.save(new Role("ADMIN"));
 
         User user = new User("John", "Smith", "john@gmail.com",
-                "john", "password", "883-655 Piacquadio Rd, Margaretville, NY 12455");
+                "john", "password", "883-655 Piacquadio Rd, Margaretville, NY 12455",
+                "John Smith 1111-2222-3333-4444 12/19");
         user.setRoles(Arrays.asList(userRole));
         userRepository.save(user);
 
         user = new User("Admin", "Admin", "admin@samazon.com",
-                "admin", "password", "473-323 Forest Ave, Georgetown, SC 29440");
+                "admin", "password", "473-323 Forest Ave, Georgetown, SC 29440",
+                "Admin 1111-2222-3333-4444 5/23");
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
     }
