@@ -61,8 +61,6 @@ public class JosephController {
     @RequestMapping("/list")
     public String homePage(Principal principal, Model model) {
         model.addAttribute("list", productRepository.findAll());
-        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
-        model.addAttribute("user", user);
         return "show";
     }
 
