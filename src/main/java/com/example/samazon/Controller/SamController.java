@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HomeController {
+public class SamController {
 
     @RequestMapping("/login")
     public String login() {
@@ -16,5 +16,9 @@ public class HomeController {
     public String listCourses(Model model) {
         return "index";
     }
-    }
 
+    @RequestMapping("/confirmation")
+    public String confirmationCourses(Model model) {
+        return "confirmation";
+    }
+}
