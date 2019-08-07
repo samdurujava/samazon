@@ -42,7 +42,7 @@ public class ProductLoader implements CommandLineRunner {
         product = new Product("iPhone XS","cellular device made by Apple Inc",899.99,true,"https://res.cloudinary.com/queentemi/image/upload/v1565199825/samazon/iPhonexs_lyaetg.jpg");
         productRepository.save(product);
 
-        product = new Product("Beats Headphones","Noise-Canceling Headphones",299.99,true,"https://res.cloudinary.com/queentemi/image/upload/v1565199825/samazon/fridge_majrf0.jpg");
+        product = new Product("Beats Headphones","Noise-Canceling Headphones",299.99,true,"https://res.cloudinary.com/queentemi/image/upload/v1565199825/samazon/Beats_Headphone_qdldok.jpg");
         productRepository.save(product);
 
         product = new Product("Apple Display Monitor","A 27inch Monitor",699.99,true,"https://res.cloudinary.com/queentemi/image/upload/v1565199826/samazon/Monitor_f7qjwt.jpg");
