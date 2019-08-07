@@ -71,28 +71,50 @@ public class JosephController {
         model.addAttribute("list", productRepository.findAll());
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
-        History history = historyRepository.findByUser(user);
-        Collection<Product> products;
-        if (history == null) {
-            history = new History();
-            products = new ArrayList<>();
-        } else {
-            products = history.getProducts();
-        }
+
+        History history = new History();
         history.setUser(user);
 
         Product product = productRepository.findById(id);
-        products.add(product);
-        history.setProducts(products);
+        history.setProductId(product.getId());
         historyRepository.save(history);
         return "show";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id, Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+
+        ArrayList<History> historyList = historyRepository.findAllByProductId(id);
+        if (historyList.size() > 0) {
+            historyRepository.deleteById(historyList.get(0).getId());
+        }
+        historyList = historyRepository.findAllByUser(user);
+        return addToCart(model, historyList);
     }
 
     @RequestMapping("/cart")
     public String myCart( Principal principal, Model model) {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
-        model.addAttribute("list", historyRepository.findByUser(user).getProducts());
-        return "show";
+        ArrayList<History> historyList = historyRepository.findAllByUser(user);
+        return addToCart(model, historyList);
+    }
+
+    private String addToCart(Model model, ArrayList<History> historyList) {
+        long total = 0;
+        if (historyList.size() > 0) {
+            ArrayList<Product> products = new ArrayList<>();
+            for (History prev : historyList) {
+                products.add(productRepository.findById(prev.getProductId()));
+                total += productRepository.findById(prev.getProductId()).getPrice();
+            }
+            model.addAttribute("list", products);
+        } else {
+            model.addAttribute("list", null);
+        }
+        model.addAttribute("total", total);
+        return "cart";
     }
 }

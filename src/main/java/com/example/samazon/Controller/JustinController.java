@@ -34,4 +34,11 @@ public class JustinController {
     {
         return "terms";
     }
+    //------------------------------------------------------------------------------------------------------------------
+    @RequestMapping("/shipping")
+    public String shipping(Model model)
+    {
+        model.addAttribute("users", userRepository.findAll());
+        return "shipping";
+    }
 }

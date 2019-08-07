@@ -33,6 +33,10 @@
         <strong><span th:if="${#fields.hasErrors('address')}">Address Error</span></strong>
         <input class="form-control" type="text" id="address" placeholder="Address" th:field="*{address}" /><br />
 
+        <label>Credit Card</label>
+        <strong><span th:if="${#fields.hasErrors('creditCard')}">Credit Card Error</span></strong>
+        <input class="form-control" type="text" id="creditCard" placeholder="Address" th:field="*{creditCard}" /><br />
+
         <button type="submit" class="btn btn-primary btn-lg" >Finish</button>
     </form>
     </div>

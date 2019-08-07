@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<style>
+    body {
+        background: #F0E5E1 ;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /**
+      Component
+    **/
+    label {
+        width: 100%;
+    }
+
+    .card-input-element {
+        display: none;
+    }
+
+    .card-input {
+        margin: 10px;
+        padding: 00px;
+    }
+
+    .card-input:hover {
+        cursor: pointer;
+    }
+
+    .card-input-element:checked + .card-input {
+        box-shadow: 0 0 1px 1px #2ecc71;
+    }
+</style>
+<head th:replace="base::header">
+
+<body>
+<div th:replace="base::nav"></div>
+
+<div class="container">
+    <h1>Shipping Preference:</h1>
+    <div class="row container">
+        <h5>Shipping Address:</h5></br>
+        <div class="card m-2" style="width: 17rem;"  th:each="user : ${users}">
+            <label>
+                <input type="radio" name="ship_address" class="card-input-element" />
+                <div class="panel panel-default card-input">
+                    <div class="card-header bg-info text-white">Name: <td th:text = "${user.firstName}"/><td th:text = "${userlastName}"/></div></br>
+                    <div class="card-body">
+                        <div class="panel-heading">Address: <td th:text = "${user.address}"></div></br>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="row container">
+        <h5>Shipping Method:</h5></br>
+        <div class="card m-2" style="width: 17rem;">
+            <label>
+                <input type="radio" name="ship_method" class="card-input-element" />
+                <div class="panel panel-default card-input">
+                    <div class="card-header bg-info text-white">One-Day Shipping</div></br>
+                    <div class="card-body">
+                        <div class="panel-heading">Get Your Items Delivered TOMORROW</div></br>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <div class="card m-2" style="width: 17rem;">
+            <label>
+                <input type="radio" name="ship_method" class="card-input-element" />
+                <div class="panel panel-default card-input">
+                    <div class="card-header bg-info text-white">Two-Day Shipping</div></br>
+                    <div class="card-body">
+                        <div class="panel-heading">Get Your Items Delivered in 2-days</div></br>
+                    </div>
+                </div>
+            </label>
+        </div>
+
+        <div class="card m-2" style="width: 17rem;">
+            <label>
+                <input type="radio" name="ship_method" class="card-input-element" />
+                <div class="panel panel-default card-input">
+                    <div class="card-header bg-info text-white">Standard Shipping</div></br>
+                    <div class="card-body">
+                        <div class="panel-heading">Get Your Items Delivered in 3-5 Business Days</div></br>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+</div>
+
+</div>
+<div th:replace="base::footer"></div>
+</body>
+</html>
