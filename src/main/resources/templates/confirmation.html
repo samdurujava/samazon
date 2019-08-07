@@ -75,7 +75,7 @@
     <tr>
         <td id="greetingSummary"> <p> </p>
             <div class="greeting">
-                Hello INSERT NAME,
+                Hello ,
             </div><br><p class="text"> Thank you for shopping with us.  We’ll send a confirmation when your item ships. </p> </td>
     </tr>
 
@@ -132,7 +132,6 @@
                                     <!--Cost Breakdown Left-->
                                     <table>
                                         <tbody>
-                                        <tr> <td class="text"> Total Before Tax: </td> </tr>
                                         <tr> <td class="text"> Estimated Tax: </td> </tr>
                                         <tr> <td class="text"> Shipping: </td> </tr>
                                         <tr> <td class="text"> <b>Order Total:</b> </td> </tr>
@@ -144,10 +143,9 @@
                                     <!--Cost Breakdown Right-->
                                     <table>
                                         <tbody>
-                                        <tr> <td class="price"> $44.97 </td> </tr>
-                                        <tr> <td class="price"> $0.00 </td> </tr>
-                                        <tr> <td class="price"> $5.00 </td> </tr>
-                                        <tr> <td class="price"> <b>$49.97</b> </td> </tr>
+                                        <tr> <td class="price"> <span th:text="@{order.tax}"/></td> </tr>
+                                        <tr> <td class="price"> <span th:text="@{order.shipping}"/></td> </tr>
+                                        <tr> <td class="price"> <b><span th:text="@{order.total}"/></b> </td> </tr>
                                         </tbody>
                                     </table>
                                 </td>

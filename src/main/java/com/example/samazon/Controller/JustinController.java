@@ -56,23 +56,24 @@ public class JustinController {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         Order order = new Order();
         order = orderRepository.findByUser(user);
-        System.out.println("hello");
         if(id =="ship1")
         {
             order.setShipping_method("One Day Shipping");
+            order.setShipping(15.99);
             orderRepository.save(order);
         }
         else if(id == "ship2")
         {
             order.setShipping_method("Two Day Shipping");
+            order.setShipping(7.99);
             orderRepository.save(order);
         }
         else
         {
             order.setShipping_method("Standard Shipping");
+            order.setShipping(0.00);
             orderRepository.save(order);
         }
-        System.out.println("goodbye");
-        return "redirect:/";
+        return "confirmation";
     }
 }
