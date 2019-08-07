@@ -3,7 +3,9 @@ package com.example.samazon.Controller;
 
 import com.example.samazon.Beans.Order;
 import com.example.samazon.Beans.Product;
-import org.apache.catalina.User;
+import com.example.samazon.Beans.User;
+import com.example.samazon.CustomUserDetails;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +52,7 @@ public class TemiController {
     }
     @RequestMapping("/myprofile")
     public String getProfile(Principal principal, Model model) {
-        User user = userService.getUser();
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
         model.addAttribute("myuser", user);
         return "profile";
