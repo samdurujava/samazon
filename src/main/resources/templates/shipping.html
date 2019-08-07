@@ -62,29 +62,29 @@
 
         <div class="row container">
             <h5>Shipping Method:</h5></br>
-            <div class="card m-2" style="width: 17rem;">
-                <label>
-                    <input type="radio" name="ship_method" class="card-input-element" id="1" value="ship1"/>
-                    <div class="panel panel-default card-input">
-                        <div class="card-header bg-info text-white">One-Day Shipping</div></br>
-                        <div class="card-body">
-                            <div class="panel-heading">Get Your Items Delivered TOMORROW</div></br>
-                        </div>
-                    </div>
-                </label>
-            </div>
+<!--            <div class="card m-2" style="width: 17rem;">-->
+<!--                <label>-->
+<!--                    <input type="radio" name="ship_method" class="card-input-element" id="1" value="ship1"/>-->
+<!--                    <div class="panel panel-default card-input">-->
+<!--                        <div class="card-header bg-info text-white">One-Day Shipping</div></br>-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="panel-heading">Get Your Items Delivered TOMORROW</div></br>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </label>-->
+<!--            </div>-->
 
-            <div class="card m-2" style="width: 17rem;">
-                <label>
-                    <input type="radio" name="ship_method" class="card-input-element" id="2" value="ship2"/>
-                    <div class="panel panel-default card-input">
-                        <div class="card-header bg-info text-white">Two-Day Shipping</div></br>
-                        <div class="card-body">
-                            <div class="panel-heading">Get Your Items Delivered in 2-days</div></br>
-                        </div>
-                    </div>
-                </label>
-            </div>
+<!--            <div class="card m-2" style="width: 17rem;">-->
+<!--                <label>-->
+<!--                    <input type="radio" name="ship_method" class="card-input-element" id="2" value="ship2"/>-->
+<!--                    <div class="panel panel-default card-input">-->
+<!--                        <div class="card-header bg-info text-white">Two-Day Shipping</div></br>-->
+<!--                        <div class="card-body">-->
+<!--                            <div class="panel-heading">Get Your Items Delivered in 2-days</div></br>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </label>-->
+<!--            </div>-->
 
             <div class="card m-2" style="width: 17rem;">
                 <label>
@@ -114,7 +114,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary" value="Submit" style="float: right;">Confirm Choices</button>
-        <input type = "hidden" name="result" id="result"/>
+        <input type = "hidden" name="result" id="result" th:text="result"/>
     </form>
 </div>
 
