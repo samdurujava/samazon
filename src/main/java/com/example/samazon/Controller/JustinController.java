@@ -74,6 +74,6 @@ public class JustinController {
             order.setShipping(0.00);
             orderRepository.save(order);
         }
-        return "confirmation";
+        return "redirect:/confirmation";
     }
 }
