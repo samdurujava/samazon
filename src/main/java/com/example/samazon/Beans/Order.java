@@ -12,16 +12,19 @@ public class Order {
     private long id;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Column(name = "total")
-    private long total;
+    private double total;
 
     @Column(name = "tax")
-    private long tax;
+    private double tax;
 
     @Column(name = "shipping")
-    private long shipping;
+    private double shipping;
+
+    @Column(name = "shipping_method")
+    private String shipping_method;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -40,35 +43,35 @@ public class Order {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public long getTotal() {
-        return total;
+    public double getTotal() {
+        return total + tax + shipping;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(double total) {
         this.total = total;
     }
 
-    public long getTax() {
+    public double getTax() {
         return tax;
     }
 
-    public void setTax(long tax) {
+    public void setTax(double tax) {
         this.tax = tax;
     }
 
-    public long getShipping() {
+    public double getShipping() {
         return shipping;
     }
 
-    public void setShipping(long shipping) {
+    public void setShipping(double shipping) {
         this.shipping = shipping;
     }
 
@@ -86,5 +89,13 @@ public class Order {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public String getShipping_method() {
+        return shipping_method;
+    }
+
+    public void setShipping_method(String shipping_method) {
+        this.shipping_method = shipping_method;
     }
 }

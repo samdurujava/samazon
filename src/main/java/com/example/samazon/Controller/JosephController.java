@@ -1,6 +1,7 @@
 package com.example.samazon.Controller;
 
 import com.example.samazon.Beans.History;
+import com.example.samazon.Beans.Order;
 import com.example.samazon.Beans.Product;
 import com.example.samazon.Beans.User;
 import com.example.samazon.CustomUserDetails;
@@ -10,16 +11,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 
 @Controller
 public class JosephController {
@@ -66,6 +66,21 @@ public class JosephController {
         return "show";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam(name = "search") String text, Principal principal, Model model) {
+        text = text.toLowerCase();
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product : productRepository.findAll()) {
+            if (product.getName().toLowerCase().contains(text)) {
+                products.add(product);
+            }
+        }
+        model.addAttribute("list", products);
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        return "show";
+    }
+
     @RequestMapping("/addCart/{id}")
     public String add(@PathVariable("id") long id, Principal principal, Model model) {
         model.addAttribute("list", productRepository.findAll());
@@ -102,13 +117,25 @@ public class JosephController {
         return addToCart(model, historyList);
     }
 
+    @RequestMapping("/checkout")
+    public String checkout( Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("users", user);
+        Order order = historyToOrder(user);
+        orderRepository.save(order);
+        model.addAttribute("order", order);
+        return "shipping";
+    }
+
     private String addToCart(Model model, ArrayList<History> historyList) {
         double total = 0;
         if (historyList.size() > 0) {
             ArrayList<Product> products = new ArrayList<>();
             for (History prev : historyList) {
-                products.add(productRepository.findById(prev.getProductId()));
-                total += productRepository.findById(prev.getProductId()).getPrice();
+                Product product = productRepository.findById(prev.getProductId());
+                products.add(product);
+                total += product.getPrice();
             }
             model.addAttribute("list", products);
         } else {
@@ -118,4 +145,55 @@ public class JosephController {
         model.addAttribute("total", total);
         return "cart";
     }
+
+    private Order historyToOrder(User user) {
+        ArrayList<History> historyList = historyRepository.findAllByUserOrderByProductId(user);
+        Order order = new Order();
+        double total = 0;
+        if (historyList.size() > 0) {
+            ArrayList<Product> products = new ArrayList<>();
+            for (History prev : historyList) {
+                Product product = productRepository.findById(prev.getProductId());
+                products.add(product);
+                total += product.getPrice();
+            }
+            order.setProducts(products);
+            order.setDate(LocalDate.now().toString());
+            double tax = total * 0.06;
+            order.setUser(user);
+            total = ((int) (total * 100)) / 100.0;
+            tax = ((int) (tax * 100)) / 100.0;
+            order.setTotal(total);
+            order.setTax(tax);
+            return order;
+        } else {
+            return null;
+        }
+    }
+
+//    class ObjectCount {
+//        private Object object;
+//        private int count;
+//
+//        ObjectCount(Object object, int count) {
+//            this.object = object;
+//            this.count = count;
+//        }
+//
+//        public int getCount() {
+//            return count;
+//        }
+//
+//        public void setCount(int count) {
+//            this.count = count;
+//        }
+//
+//        public Object getObject() {
+//            return object;
+//        }
+//
+//        public void setObject(Object object) {
+//            this.object = object;
+//        }
+//    }
 }
