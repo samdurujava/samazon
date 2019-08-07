@@ -58,7 +58,7 @@ public class JosephController {
         return "login";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/list")
     public String homePage(Principal principal, Model model) {
         model.addAttribute("list", productRepository.findAll());
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
@@ -103,7 +103,7 @@ public class JosephController {
     }
 
     private String addToCart(Model model, ArrayList<History> historyList) {
-        long total = 0;
+        double total = 0;
         if (historyList.size() > 0) {
             ArrayList<Product> products = new ArrayList<>();
             for (History prev : historyList) {
@@ -114,6 +114,7 @@ public class JosephController {
         } else {
             model.addAttribute("list", null);
         }
+        total = ((int) (total * 100)) / 100.0;
         model.addAttribute("total", total);
         return "cart";
     }
