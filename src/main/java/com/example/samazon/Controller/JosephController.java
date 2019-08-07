@@ -71,19 +71,12 @@ public class JosephController {
         model.addAttribute("list", productRepository.findAll());
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
-        History history = historyRepository.findByUser(user);
-        Collection<Product> products;
-        if (history == null) {
-            history = new History();
-            products = new ArrayList<>();
-        } else {
-            products = history.getProducts();
-        }
+
+        History history = new History();
         history.setUser(user);
 
         Product product = productRepository.findById(id);
-        products.add(product);
-        history.setProducts(products);
+        history.setProductId(product.getId());
         historyRepository.save(history);
         return "show";
     }
@@ -92,7 +85,16 @@ public class JosephController {
     public String myCart( Principal principal, Model model) {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
-        model.addAttribute("list", historyRepository.findByUser(user).getProducts());
+        ArrayList<History> historyList = historyRepository.findAllByUser(user);
+        if (historyList.size() > 0) {
+            ArrayList<Product> products = new ArrayList<>();
+            for (History prev : historyList) {
+                products.add(productRepository.findById(prev.getProductId()));
+            }
+            model.addAttribute("list", products);
+        } else {
+            model.addAttribute("list", null);
+        }
         return "show";
     }
 }

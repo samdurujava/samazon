@@ -4,6 +4,9 @@ import com.example.samazon.Beans.History;
 import com.example.samazon.Beans.User;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.ArrayList;
+
 public interface HistoryRepository extends CrudRepository<History, Long> {
-    History findByUser(User user);
+    ArrayList<History> findAllByUser(User user);
+    History findByProductId(Long id);
 }

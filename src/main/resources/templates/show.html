@@ -9,24 +9,31 @@
 <div th:replace="base :: header"></div>
 <div th:replace="base :: nav"></div>
 <div class="container">
-    <div class="row">
-        <div th:each="products : ${list}" class="card" style="width: 20rem; margin: 10px;">
-            <div>
-                <img th:if="${products.image} != null" th:src="${products.image}" class="card-img-top" />
-                <div class="card-body">
-                    <h4 class="card-title" th:text="${products.name}"></h4>
-                    <h6 th:text="'$' + ${products.price}"></h6>
-                    <p th:text="${products.description}"></p>
-                    <a class="btn btn-primary" th:href="@{/view/{id}(id=${products.id})}">
-                        View
-                    </a>
-                    <a class="btn btn-primary" th:href="@{/addCart/{id}(id=${products.id})}">
-                        Add to Cart
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${list}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/view/{id}(id=${product.id})}">
+                    View
+                </a>
+                <a class="btn btn-primary" th:href="@{/addCart/{id}(id=${product.id})}">
+                    Add to Cart
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <div th:replace="base :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -27,9 +27,10 @@ public class Product {
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private Collection<Order> orders;
 
-    @ManyToOne
-    @JoinColumn(name = "history_id")
-    private History history;
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(joinColumns = @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "history_id"))
+//    private Collection<History> history;
 
     public long getId() {
         return id;
@@ -96,13 +97,5 @@ public class Product {
 
     public void setOrders(Collection<Order> orders) {
         this.orders = orders;
-    }
-
-    public History getHistory() {
-        return history;
-    }
-
-    public void setHistory(History history) {
-        this.history = history;
     }
 }
