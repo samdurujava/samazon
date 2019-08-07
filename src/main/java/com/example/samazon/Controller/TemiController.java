@@ -3,6 +3,7 @@ package com.example.samazon.Controller;
 
 import com.example.samazon.Beans.Order;
 import com.example.samazon.Beans.Product;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,6 +48,12 @@ public class TemiController {
 //        productRepository.save(product);
         return "redirect:/";
     }
-
+    @RequestMapping("/myprofile")
+    public String getProfile(Principal principal, Model model) {
+        User user = userService.getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("myuser", user);
+        return "profile";
+    }
     }
 
