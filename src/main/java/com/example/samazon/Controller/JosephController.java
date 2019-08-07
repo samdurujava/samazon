@@ -11,10 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -69,6 +66,21 @@ public class JosephController {
         return "show";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam(name = "search") String text, Principal principal, Model model) {
+        text = text.toLowerCase();
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product : productRepository.findAll()) {
+            if (product.getName().toLowerCase().contains(text)) {
+                products.add(product);
+            }
+        }
+        model.addAttribute("list", products);
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        return "show";
+    }
+
     @RequestMapping("/addCart/{id}")
     public String add(@PathVariable("id") long id, Principal principal, Model model) {
         model.addAttribute("list", productRepository.findAll());
@@ -103,6 +115,17 @@ public class JosephController {
         model.addAttribute("user", user);
         ArrayList<History> historyList = historyRepository.findAllByUser(user);
         return addToCart(model, historyList);
+    }
+
+    @RequestMapping("/checkout")
+    public String checkout( Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        model.addAttribute("user", user);
+        model.addAttribute("users", user);
+        Order order = historyToOrder(user);
+        orderRepository.save(order);
+        model.addAttribute("order", order);
+        return "shipping";
     }
 
     private String addToCart(Model model, ArrayList<History> historyList) {
