@@ -64,6 +64,20 @@ public class JosephController {
         return "show";
     }
 
+    @RequestMapping("/finalize")
+    public String finalize(Principal principal, Model model) {
+        User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
+        for (History history : historyRepository.findAllByUserAndStatus(user, 0)) {
+            history.setStatus(1);
+            historyRepository.save(history);
+        }
+        Order order = orderRepository.findByUserAndOrdered(user, 0);
+        order.setOrdered(1);
+        orderRepository.save(order);
+        model.addAttribute("list", productRepository.findAll());
+        return "redirect:/";
+    }
+
     @PostMapping("/search")
     public String search(@RequestParam(name = "search") String text, Principal principal, Model model) {
         text = text.toLowerCase();
@@ -111,7 +125,7 @@ public class JosephController {
     public String myCart( Principal principal, Model model) {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
-        ArrayList<History> historyList = historyRepository.findAllByUser(user);
+        ArrayList<History> historyList = historyRepository.findAllByUserAndStatus(user, 0);
         return addToCart(model, historyList);
     }
 
@@ -120,6 +134,10 @@ public class JosephController {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         model.addAttribute("user", user);
         model.addAttribute("users", user);
+        Order toDelete = orderRepository.findByUserAndOrdered(user, 0);
+        if (toDelete != null) {
+            orderRepository.delete(toDelete);
+        }
         Order order = historyToOrder(user);
         orderRepository.save(order);
         model.addAttribute("order", order);

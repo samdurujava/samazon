@@ -23,6 +23,8 @@ public class Order {
     @Column(name = "shipping")
     private double shipping;
 
+    private int ordered;
+
     @Column(name = "shipping_method")
     private String shipping_method;
 
@@ -97,5 +99,13 @@ public class Order {
 
     public void setShipping_method(String shipping_method) {
         this.shipping_method = shipping_method;
+    }
+
+    public int getOrdered() {
+        return ordered;
+    }
+
+    public void setOrdered(int ordered) {
+        this.ordered = ordered;
     }
 }

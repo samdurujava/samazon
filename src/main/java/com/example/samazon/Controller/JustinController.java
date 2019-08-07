@@ -55,7 +55,7 @@ public class JustinController {
     {
         User user = ((CustomUserDetails)((UsernamePasswordAuthenticationToken) principal).getPrincipal()).getUser();
         Order order = new Order();
-        order = orderRepository.findByUser(user);
+        order = orderRepository.findByUserAndOrdered(user, 0);
         System.out.println("Hello");
         System.out.println(id);
 //        if(id =="ship1")
