@@ -12,9 +12,9 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/index")
-    public String listCourses(Model model) {
-        return "index";
-    }
+//    @RequestMapping("/index")
+//    public String listCourses(Model model) {
+//        return "index";
+//    }
     }
 
