@@ -17,7 +17,7 @@ import java.util.Date;
 @Controller
 public class TemiController {
 
-    @RequestMapping("/homepage")
+    @RequestMapping("/")
     public String homepage() {
         return "homepage";
     }
@@ -30,8 +30,8 @@ public class TemiController {
     @GetMapping("/add")
     public String testPage(Model model) {
         Order order=new Order();
-        order.setDate(new Date());
-        order.setProducts(<);
+//        order.setDate(new Date());
+//        order.setProducts();
 
 
         model.addAttribute("order", order);

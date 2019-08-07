@@ -1,42 +1,42 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div th:replace="base::nav"></div>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="https://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:replace="base::nav"></div>-->
 
-<div class="container">
+<!--<div class="container">-->
 
-    <div class="jumbotron lead">
-        <h2>payment Page</h2>
-    </div>
-
-
-    <form action="#" enctype="multipart/form-data" method="post"
-          th:action="@{/process}" th:object="${order}">
+<!--    <div class="jumbotron lead">-->
+<!--        <h2>payment Page</h2>-->
+<!--    </div>-->
 
 
-        <input th:field="*{id}" type="hidden"/>
+<!--    <form action="#" enctype="multipart/form-data" method="post"-->
+<!--          th:action="@{/process}" th:object="${order}">-->
+
+
+<!--        <input th:field="*{id}" type="hidden"/>-->
 
 
 
-        <input th:field="*{user}" th:value="${user}" type="hidden">
+<!--        <input th:field="*{user}" th:value="${user}" type="hidden">-->
 
-        <div class="text-left">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label" for="title">Title:</label>
-                <div class="col-sm-10">
-                    <input class="form-control" id="title" placeholder="Enter Title"
-                           th:field="*{title}" type="text"/>
-                    <span class="error-message" th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></span>
-                </div>
-            </div>
+<!--        <div class="text-left">-->
+<!--            <div class="form-group row">-->
+<!--                <label class="col-sm-2 col-form-label" for="title">Title:</label>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <input class="form-control" id="title" placeholder="Enter Title"-->
+<!--                           th:field="*{title}" type="text"/>-->
+<!--                    <span class="error-message" th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></span>-->
+<!--                </div>-->
+<!--            </div>-->
 
-        </div>
-    </form>
-</div>
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
